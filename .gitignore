@@ -9,8 +9,11 @@
 yarn.lock
 package-lock.json
 .env.secrets
+.ash_history
+.bash_history
 
 # ignore below directories
 __pycache__/
 node_modules/
+.cache/
 .pytest_cache/
