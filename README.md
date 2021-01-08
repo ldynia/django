@@ -1,6 +1,6 @@
 # Description
 
-Django plain init project.
+Plain django init project.
 
 # Instructions
 
