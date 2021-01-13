@@ -1,3 +1,7 @@
+# Description
+
+Plain django init project.
+
 # Instructions
 
 ```bash
