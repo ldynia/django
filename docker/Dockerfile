@@ -10,6 +10,9 @@ ENV PYTHONIOENCODING=UTF-8
 WORKDIR /app
 COPY . /app
 
+RUN apk add \
+    curl
+
 # Fixed permissions, create exec:exec and dev:dev
 RUN sed -i '/999/d;' /etc/group
 RUN addgroup -S -g 999 exec && adduser -u 999 -SDHG exec exec
@@ -22,6 +25,8 @@ RUN chmod -R a-w /etc
 
 EXPOSE ${PORT}
 VOLUME /app
+
+HEALTHCHECK CMD curl -f http://localhost:${PORT}/ || exit 1
 
 USER exec:dev
 
