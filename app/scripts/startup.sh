@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 
 CONTAINER_IP=$(ip addr | grep inet | tail -n1 | awk '{print $2}' |  cut -d'/' -f1)
 echo "Container IP: $CONTAINER_IP"
@@ -9,7 +9,7 @@ pip install -r /app/requirements.txt --no-cache-dir
 # echo "Run migrations"
 # python /app/manage.py migrate
 
-# is $@ empty
+# if args empty
 if [ -z "$@" ]
 then
     echo "Run Server"
