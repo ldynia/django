@@ -3,7 +3,6 @@ FROM python:3.7.9-alpine
 ARG PORT=8000
 ENV PORT=$PORT
 
-ENV HOME=/app
 ENV PYTHONUNBUFFERED=True
 ENV PYTHONIOENCODING=UTF-8
 
@@ -11,7 +10,11 @@ WORKDIR /app
 COPY . /app
 
 RUN apk add \
-    curl
+    curl \
+    gcc \
+    libpq \
+    musl-dev \
+    postgresql-dev
 
 # Fixed permissions, create exec:exec and dev:dev
 RUN sed -i '/999/d;' /etc/group
