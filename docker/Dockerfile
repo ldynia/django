@@ -17,13 +17,17 @@ RUN apk add \
     postgresql-dev
 
 # Fixed permissions, create exec:exec and dev:dev
-RUN sed -i '/999/d;' /etc/group
-RUN addgroup -S -g 999 exec && adduser -u 999 -SDHG exec exec
-RUN adduser -DH dev && adduser exec dev
+RUN sed -i '/999/d;' /etc/group && \
+    addgroup -S -g 999 exec && \
+    adduser -u 999 -SDHG exec exec && \
+    adduser -DH dev && \ 
+    adduser exec dev
+
 RUN chown -R exec:dev \
     /app \
     /usr/local/bin/ \
     /usr/local/lib/python3.7/
+
 RUN chmod -R a-w /etc
 
 EXPOSE ${PORT}

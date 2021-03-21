@@ -7,6 +7,8 @@ services:
     image: django/demo
     container_name: django-demo-app
     hostname: django-demo-postgress
+    ports: 
+      - 8000:8000
     depends_on: 
       - postgres
     environment: 
