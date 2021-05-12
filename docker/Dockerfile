@@ -1,26 +1,22 @@
-FROM python:3.7.9-alpine
+FROM python:3.7.9-slim
 
 ARG PORT=8000
 ENV PORT=$PORT
 
 ENV PYTHONUNBUFFERED=True
-ENV PYTHONIOENCODING=UTF-8
 
 WORKDIR /app
 COPY . /app
 
-RUN apk add \
+RUN apt-get update && apt-get install -y \
     curl \
-    gcc \
-    libpq \
-    musl-dev \
-    postgresql-dev
+    gcc
 
 # Fixed permissions, create exec:exec and dev:dev
 RUN sed -i '/999/d;' /etc/group && \
-    addgroup -S -g 999 exec && \
-    adduser -u 999 -SDHG exec exec && \
-    adduser -DH dev && \ 
+    addgroup --system -gid 999 exec && \
+    adduser --system --disabled-password --no-create-home --home /nonexistent --uid 999 --group exec && \
+    adduser --disabled-login --disabled-password --gecos --no-create-home --home /nonexistent dev && \
     adduser exec dev
 
 RUN chown -R exec:dev \
