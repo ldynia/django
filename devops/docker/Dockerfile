@@ -1,4 +1,3 @@
-
 ARG PY_DIST=alpine \
     PY_VER=3.11
 FROM python:${PY_VER}-${PY_DIST}
@@ -28,8 +27,6 @@ RUN chown -R ${USER}:${GROUP} \
     /usr/local/lib/python${PY_VER} \
     ${WORKDIR}
 
-RUN chmod -R a-w /etc
-
 EXPOSE ${PORT}
 VOLUME ${WORKDIR}
 
@@ -37,5 +34,4 @@ USER ${USER}:${GROUP}
 
 HEALTHCHECK CMD curl -f http://localhost:${PORT}/ || exit 1
 
-# CMD sleep 1d
-ENTRYPOINT ["/usr/src/scripts/startup.sh"]
+ENTRYPOINT ["/usr/src/scripts/startup.sh", "sleep", "1d"]
