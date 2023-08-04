@@ -32,7 +32,7 @@ VOLUME ${WORKDIR}
 
 USER ${USER}:${GROUP}
 
-HEALTHCHECK CMD curl -f http://localhost:${PORT}/ || exit 1
+HEALTHCHECK CMD curl -f http://localhost:${PORT} || exit 1
 
 ENTRYPOINT ["/usr/src/scripts/startup.sh"]
 #ENTRYPOINT ["/usr/src/scripts/startup.sh", "sleep", "1d"]
