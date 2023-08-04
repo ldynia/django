@@ -6,7 +6,7 @@ Plain django init project.
 
 1. [Docker Engine](https://docs.docker.com/engine/install/) or [Docker Desktop](https://docs.docker.com/desktop/)
 
-# Instructions
+# Installation
 
 ```bash
 docker compose -f devops/docker/docker-compose.yaml build --build-arg USER=1000 --build-arg GROUP=1000
